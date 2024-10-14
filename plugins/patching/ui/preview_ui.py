@@ -65,13 +65,12 @@ class PatchingDockable(ida_kernwin.PluginForm):
         self.widget.setMinimumSize(350, 350)
 
         # setup a monospace font for code / text printing
-        # TODO: Unable to set font style
         font_name = ida_registry.reg_read_string("Name", "Font\Disassembly", "Consolas")
         font_size = ida_registry.reg_read_int("Size", 10, "Font\Disassembly")
-        #font_style = ida_registry.reg_read_string("Style", "Font\Disassembly", "Regular")
+        font_bold = ida_registry.reg_read_int("Bold", 0, "Font\Disassembly")
         self._font = QtGui.QFont(font_name)
         self._font.setPointSize(font_size)
-        #self._font.setStyleName(font_style)
+        self._font.setBold(True if font_bold else False)
         self._font.setStyleHint(QtGui.QFont.Monospace)
 
         # initialize our ui elements
